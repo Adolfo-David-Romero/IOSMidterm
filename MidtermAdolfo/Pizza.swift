@@ -22,7 +22,7 @@ struct Pizza{
         self.quantity = quantity
         
     }
-    func totalPrice(quantity: Int, pepperoni: Bool, cheese:Bool, olive: Bool) -> Int{
+    func totalPrice(size: String, quantity: Int, pepperoni: Bool, cheese:Bool, olive: Bool) -> Int{
         var extra: Int = 0
         if (pepperoni){
             extra = extra + 1

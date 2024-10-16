@@ -8,19 +8,29 @@
 import SwiftUI
 
 struct SummaryView: View {
-    @Binding var userName: String
-    @Binding var selectedSize: PizzaSizes
-    @Binding var selectedTopping: PizzaToppings
-    @Binding var selectedQuantity: String
+    @Binding var size: String
+    @Binding var pepperoni: Bool
+    @Binding var cheese: Bool
+    @Binding var olive: Bool
+    @Binding var quantity: String
+    @State var pizza = Pizza(size: "Small", pepperoni: true, cheese: true, olive: true, quantity: 1)
     var body: some View {
-        Text("")
+        NavigationStack{
+            List{
+                Text("size:\(pizza.size)")
+                Text("pepperoni:\(pizza.pepperoni)")
+                Text("cheese:\(pizza.cheese)")
+                Text("olive:\(pizza.olive)")
+                Text("quantity:\(pizza.quantity)")
+            }
+            Text("Price:")
+            Text("\(pizza.totalPrice(size:pizza.size,quantity: pizza.quantity, pepperoni: pizza.pepperoni, cheese: pizza.cheese, olive: pizza.olive))")
+        }.navigationTitle("Summary")
     }
 }
 
 #Preview {
-    @State var userName: String = ""
-    @State var selectedSize: PizzaSizes = .medium
-    @State var selectedTopping: PizzaToppings = .pepperoni
-    @State var selectedQuantity: String = ""
-    SummaryView(userName: $userName, selectedSize: $selectedSize, selectedTopping: $selectedTopping, selectedQuantity: $selectedQuantity)
+//    var pizza = Pizza(size: "Small", pepperoni: true, cheese: true, olive: true, quantity: 1)
+//   
+//    SummaryView(pizza: Pizza)
 }

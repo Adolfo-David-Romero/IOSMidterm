@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct OrderView: View {
-    @State private var userName: String = ""
-    @State private var selectedSize: PizzaSizes = .medium
-    @State private var selectedQuantity: Int = 0 //Will Int() this
-    @State private var pepperoni:Bool = false
-    @State private var chese: Bool = false
-    @State private var olive:Bool = false
+    @State var userName: String = ""
+    @State var selectedSize: PizzaSizes = .medium
+    @State var quantity: String = "" //Will Int() this
+    @State var pepperoni:Bool = false
+    @State var cheese: Bool = false
+    @State var olive:Bool = false
+   
     var body: some View {
         NavigationStack{
             VStack{
@@ -30,18 +31,16 @@ struct OrderView: View {
                     }.pickerStyle(.menu)
                     Text("Choose Toppings:")
                     HStack{
-                        Picker("Select Pizza Toppings:", selection: $selectedTopping){
-                            Text("Cheese Pizza").tag(PizzaToppings.cheese)
-                            Text("Pepperoni Pizza").tag(PizzaToppings.pepperoni)
-                            Text("Veggie Pizza").tag(PizzaToppings.veggie)
-                        }.pickerStyle(.segmented)
+                        Toggle("", isOn: $pepperoni)
+                        Toggle("", isOn: $cheese)
+                        Toggle("", isOn: $olive)
                     }
                     TextField("Enter number of Pizza's",
-                              text: $selectedQuantity
+                              text: $quantity
                     )
                 }//List End
                 NavigationLink("Place the Order"){
-                    
+                    SummaryView(size: $selectedSize.rawValue, pepperoni: $pepperoni, cheese: $cheese, olive: $olive, quantity: $quantity )
                 }
                 
             }
