@@ -10,15 +10,16 @@ import SwiftUI
 struct OrderView: View {
     @State private var userName: String = ""
     @State private var selectedSize: PizzaSizes = .medium
-    @State private var selectedTopping: PizzaToppings = .pepperoni
-    @State private var selectedQuantity: String = "" //Will Int() this
-    @State private var isPeperoni = false
-    @State private var isVeggie = false
-    @State private var isCheese = false
+    @State private var selectedQuantity: Int = 0 //Will Int() this
+    @State private var pepperoni:Bool = false
+    @State private var chese: Bool = false
+    @State private var olive:Bool = false
     var body: some View {
         NavigationStack{
             VStack{
+                
                 List{
+                    Text("Pizza Info:").font(.largeTitle)
                     TextField("Enter user name",
                               text: $userName
                     )
@@ -38,11 +39,13 @@ struct OrderView: View {
                     TextField("Enter number of Pizza's",
                               text: $selectedQuantity
                     )
+                }//List End
+                NavigationLink("Place the Order"){
+                    
                 }
                 
-                
             }
-        }
+        }.navigationTitle("OrderView")
     }
 }
 
