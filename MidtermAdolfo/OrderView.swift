@@ -40,7 +40,7 @@ struct OrderView: View {
                     )
                 }//List End
                 NavigationLink("Place the Order"){
-                    SummaryView(size: $selectedSize.rawValue, pepperoni: $pepperoni, cheese: $cheese, olive: $olive, quantity: $quantity )
+                    SummaryView(size: $quantity, pepperoni: $pepperoni, cheese: $cheese, olive: $olive, quantity: $quantity )
                 }
                 
             }
